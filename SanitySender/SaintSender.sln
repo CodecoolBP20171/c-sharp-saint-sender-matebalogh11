@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaintSender", "SanitySender\SaintSender.csproj", "{9CC52EBC-355B-4322-B0F0-1B5BD3BC605D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CC52EBC-355B-4322-B0F0-1B5BD3BC605D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC52EBC-355B-4322-B0F0-1B5BD3BC605D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC52EBC-355B-4322-B0F0-1B5BD3BC605D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC52EBC-355B-4322-B0F0-1B5BD3BC605D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1EB57EFC-F483-41CE-AF0C-1BCFEF247AD8}
+	EndGlobalSection
+EndGlobal
