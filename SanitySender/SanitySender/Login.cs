@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace SaintSender
 {
-    public partial class Login : Form
+    public partial class LoginForm : Form
     {
-        public Login()
+        public LoginForm()
         {
             InitializeComponent();
             this.TopMost = true;

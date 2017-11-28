@@ -9,6 +9,7 @@ namespace SaintSender
     {
         static EmailManager eManager;
         ConnectionManager cManager;
+        public MainForm form;
 
         private EmailManager() { }
 
@@ -20,16 +21,28 @@ namespace SaintSender
 
         public void LoadEmails(ListView list)
         {
+            list.Items.Clear();
             cManager = ConnectionManager.GetInstance();
             IEnumerable<uint> uids = cManager.Client.Search(SearchCondition.All());
             IEnumerable<MailMessage> messages = cManager.Client.GetMessages(uids);
             foreach(MailMessage message in messages)
             {
                 ListViewItem item = new ListViewItem(new string[] { message.From.ToString(), message.Subject });
-                item.Tag = message.Body.Trim();
+                item.Tag = message;
                 list.Items.Add(item);
             }
         }
 
+        public void OnMessage(object sender, IdleMessageEventArgs e)
+        {
+            MailMessage m = e.Client.GetMessage(e.MessageUID);
+            form.Invoke(form.myDelegate, new object[] { m, false });
+        }
+
+        public void OnDeletion(object sender, IdleMessageEventArgs e)
+        {
+            MailMessage m = e.Client.GetMessage(e.MessageUID);
+            form.Invoke(form.myDelegate, new object[] { m, true });
+        }
     }
 }

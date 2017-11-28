@@ -1,4 +1,5 @@
 ﻿using S22.Imap;
+using System;
 using System.Windows.Forms;
 
 namespace SaintSender
@@ -34,6 +35,7 @@ namespace SaintSender
             {
                 Client.Login(usrn, pw, AuthMethod.Login);
                 connected = true;
+                SetUpListeners();
                 return true;
             }
             catch(InvalidCredentialsException)
@@ -46,6 +48,18 @@ namespace SaintSender
         public void KillConnection()
         {
             if (Client != null) Client.Dispose();
+        }
+
+        public void SetUpListeners()
+        {
+            if (Client != null)
+            {
+                if (Client.Supports("IDLE") == true)
+                {
+                    Client.NewMessage += new EventHandler<IdleMessageEventArgs>(EmailManager.GetInstance().OnMessage);
+                    Client.MessageDeleted += new EventHandler<IdleMessageEventArgs>(EmailManager.GetInstance().OnDeletion);
+                }
+            }
         }
     }
 }
