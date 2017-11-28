@@ -5,22 +5,25 @@ namespace SaintSender
 {
     public partial class Login : Form
     {
-        Form MainForm;
-        public Login(Form Main)
+        public Login()
         {
             InitializeComponent();
             this.TopMost = true;
             this.StartPosition = FormStartPosition.CenterScreen;
-            MainForm = Main;
+            txtPass.PasswordChar = '*';
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (ConnectionManager.Login(txtName.Text, txtPass.Text))
+            if (ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text))
             {
-                MainForm.Enabled = true;
                 this.Close();
             }
+        }
+
+        public void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

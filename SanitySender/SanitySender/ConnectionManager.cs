@@ -5,8 +5,11 @@ namespace SaintSender
 {
     public class ConnectionManager
     {
-        static ImapClient client;
-        public static ImapClient Client { get => client;
+        static ConnectionManager manager;
+        ImapClient client;
+        bool connected = false;
+
+        public ImapClient Client { get => client;
             set
             {
                 if(client == default(ImapClient))
@@ -16,12 +19,21 @@ namespace SaintSender
             }
         }
 
-        public static bool Login(string usrn, string pw)
+        private ConnectionManager() { }
+
+        public static ConnectionManager GetInstance()
+        {
+            if (manager == null) manager = new ConnectionManager();
+            return manager;
+        }
+
+        public  bool Login(string usrn, string pw)
         {
             Client = new ImapClient("imap.gmail.com", 993, true);
             try
             {
                 Client.Login(usrn, pw, AuthMethod.Login);
+                connected = true;
                 return true;
             }
             catch(InvalidCredentialsException)
@@ -29,6 +41,11 @@ namespace SaintSender
                 MessageBox.Show("The server rejected the supplied credentials.");
             }
             return false;
+        }
+
+        public void KillConnection()
+        {
+            if (Client != null) Client.Dispose();
         }
     }
 }

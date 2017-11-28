@@ -57,7 +57,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CollectionManager.cs" />
+    <Compile Include="ConnectionManager.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
