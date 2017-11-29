@@ -1,6 +1,10 @@
 ﻿using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using S22.Mail;
+using System.Net.Mail;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 namespace SaintSender
 {
@@ -12,9 +16,19 @@ namespace SaintSender
             SaveUserData(name, pass);
         }
 
-        public BackupManager(object[] emails)
+        public void SerializeMails(IEnumerable<MailMessage> emails)
         {
 
+            BinaryFormatter formatter = new BinaryFormatter();
+            int counter = 0;
+            foreach(MailMessage message in emails)
+            {
+                using(FileStream stream = new FileStream($"backupMail{counter}.dat", FileMode.Create))
+                {
+                    formatter.Serialize(stream, (SerializableMailMessage)message);
+                }
+                counter++;
+            }
         }
 
         public BackupManager() { }

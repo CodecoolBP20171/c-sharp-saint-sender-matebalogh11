@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Mail;
-using System.Net.Mime;
 using System.Windows.Forms;
 
 namespace SaintSender
@@ -11,7 +11,6 @@ namespace SaintSender
         public delegate void AddListViewItem(MailMessage m, bool b);
         public AddListViewItem myDelegate;
         EmailManager eManager;
-        public static ListView v;
 
         public MainForm()
         {
@@ -63,6 +62,13 @@ namespace SaintSender
             {
                 eManager.LoadEmails(MainListView);
             }
+        }
+
+        private void buttonBackUp_Click(object sender, EventArgs e)
+        {
+            IEnumerable<MailMessage> messages = eManager.FetchEmails();
+            BackupManager bManager = new BackupManager();
+            bManager.SerializeMails(messages);
         }
     }
 }

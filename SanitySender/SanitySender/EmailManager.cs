@@ -44,6 +44,13 @@ namespace SaintSender
             }
         }
 
+        public IEnumerable<MailMessage> FetchEmails()
+        {
+            cManager = ConnectionManager.GetInstance();
+            IEnumerable<uint> uids = cManager.Client.Search(SearchCondition.All());
+            return cManager.Client.GetMessages(uids);
+        }
+
         public void OnMessage(object sender, IdleMessageEventArgs e)
         {
             MailMessage m = e.Client.GetMessage(e.MessageUID);
