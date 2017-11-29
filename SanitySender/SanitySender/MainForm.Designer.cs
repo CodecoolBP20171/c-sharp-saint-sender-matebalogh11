@@ -37,6 +37,7 @@
             this.labelConnection = new System.Windows.Forms.Label();
             this.mainBrowser = new System.Windows.Forms.WebBrowser();
             this.imgMail = new System.Windows.Forms.ImageList(this.components);
+            this.buttonLogOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MainListView
@@ -47,7 +48,7 @@
             this.columnHeader2});
             this.MainListView.Location = new System.Drawing.Point(12, 12);
             this.MainListView.Name = "MainListView";
-            this.MainListView.Size = new System.Drawing.Size(498, 185);
+            this.MainListView.Size = new System.Drawing.Size(521, 185);
             this.MainListView.SmallImageList = this.imgMail;
             this.MainListView.TabIndex = 0;
             this.MainListView.UseCompatibleStateImageBehavior = false;
@@ -57,7 +58,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "From";
-            this.columnHeader1.Width = 127;
+            this.columnHeader1.Width = 160;
             // 
             // columnHeader2
             // 
@@ -66,7 +67,7 @@
             // 
             // buttonBackUp
             // 
-            this.buttonBackUp.Location = new System.Drawing.Point(435, 489);
+            this.buttonBackUp.Location = new System.Drawing.Point(550, 134);
             this.buttonBackUp.Name = "buttonBackUp";
             this.buttonBackUp.Size = new System.Drawing.Size(75, 23);
             this.buttonBackUp.TabIndex = 2;
@@ -76,7 +77,7 @@
             // labelConnection
             // 
             this.labelConnection.AutoSize = true;
-            this.labelConnection.Location = new System.Drawing.Point(13, 489);
+            this.labelConnection.Location = new System.Drawing.Point(590, 12);
             this.labelConnection.Name = "labelConnection";
             this.labelConnection.Size = new System.Drawing.Size(35, 13);
             this.labelConnection.TabIndex = 3;
@@ -87,7 +88,7 @@
             this.mainBrowser.Location = new System.Drawing.Point(12, 203);
             this.mainBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.mainBrowser.Name = "mainBrowser";
-            this.mainBrowser.Size = new System.Drawing.Size(498, 280);
+            this.mainBrowser.Size = new System.Drawing.Size(613, 349);
             this.mainBrowser.TabIndex = 4;
             // 
             // imgMail
@@ -96,11 +97,21 @@
             this.imgMail.TransparentColor = System.Drawing.Color.Transparent;
             this.imgMail.Images.SetKeyName(0, "mail.png");
             // 
+            // buttonLogOut
+            // 
+            this.buttonLogOut.Location = new System.Drawing.Point(550, 174);
+            this.buttonLogOut.Name = "buttonLogOut";
+            this.buttonLogOut.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogOut.TabIndex = 5;
+            this.buttonLogOut.Text = "Logout";
+            this.buttonLogOut.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 524);
+            this.ClientSize = new System.Drawing.Size(637, 564);
+            this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.mainBrowser);
             this.Controls.Add(this.labelConnection);
             this.Controls.Add(this.buttonBackUp);
@@ -122,6 +133,7 @@
         private System.Windows.Forms.Label labelConnection;
         private System.Windows.Forms.WebBrowser mainBrowser;
         private System.Windows.Forms.ImageList imgMail;
+        private System.Windows.Forms.Button buttonLogOut;
     }
 }
 
