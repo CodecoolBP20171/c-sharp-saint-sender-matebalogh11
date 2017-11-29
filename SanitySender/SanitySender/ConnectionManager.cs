@@ -1,5 +1,6 @@
 ﻿using S22.Imap;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SaintSender
@@ -8,7 +9,6 @@ namespace SaintSender
     {
         static ConnectionManager manager;
         ImapClient client;
-        bool connected = false;
 
         public ImapClient Client { get => client;
             set
@@ -28,21 +28,18 @@ namespace SaintSender
             return manager;
         }
 
-        public  bool Login(string usrn, string pw)
+        public async Task Login(string usrn, string pw)
         {
             Client = new ImapClient("imap.gmail.com", 993, true);
             try
             {
-                Client.Login(usrn, pw, AuthMethod.Login);
-                connected = true;
+                await Task.Run(() => Client.Login(usrn, pw, AuthMethod.Login));
                 SetUpListeners();
-                return true;
             }
             catch(InvalidCredentialsException)
             {
                 MessageBox.Show("The server rejected the supplied credentials.");
             }
-            return false;
         }
 
         public void KillConnection()

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupManager.cs" />
     <Compile Include="EmailManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

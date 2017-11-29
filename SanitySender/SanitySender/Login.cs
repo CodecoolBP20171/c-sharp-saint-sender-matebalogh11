@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace SaintSender
 {
@@ -10,15 +11,18 @@ namespace SaintSender
             InitializeComponent();
             this.TopMost = true;
             this.StartPosition = FormStartPosition.CenterScreen;
+            BackupManager mngr = new BackupManager();
+            string[] creds = mngr.RestoreUserData();
             txtPass.PasswordChar = '*';
+            txtName.Text = creds[0];
+            txtPass.Text = creds[1];
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private async void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text))
-            {
-                this.Close();
-            }
+            await Task.Run(() => ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text));
+            BackupManager mngr = new BackupManager(txtName.Text, txtPass.Text);
+            this.Close();
         }
 
         public void Login_FormClosed(object sender, FormClosedEventArgs e)
