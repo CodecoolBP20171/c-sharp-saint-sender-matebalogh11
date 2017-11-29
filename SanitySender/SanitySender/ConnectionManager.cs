@@ -28,12 +28,13 @@ namespace SaintSender
             return manager;
         }
 
-        public async Task Login(string usrn, string pw)
+        public void Login(string usrn, string pw)
         {
             Client = new ImapClient("imap.gmail.com", 993, true);
             try
             {
-                await Task.Run(() => Client.Login(usrn, pw, AuthMethod.Login));
+                var t =  Task.Run(() => Client.Login(usrn, pw, AuthMethod.Login));
+                t.Wait();
                 SetUpListeners();
             }
             catch(InvalidCredentialsException)

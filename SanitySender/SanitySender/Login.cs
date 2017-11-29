@@ -18,9 +18,10 @@ namespace SaintSender
             txtPass.Text = creds[1];
         }
 
-        private async void buttonLogin_Click(object sender, EventArgs e)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
-            await Task.Run(() => ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text));
+            var t =  Task.Run(() => ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text));
+            t.Wait();
             BackupManager mngr = new BackupManager(txtName.Text, txtPass.Text);
             this.Close();
         }

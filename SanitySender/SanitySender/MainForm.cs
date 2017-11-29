@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Windows.Forms;
 
 namespace SaintSender
@@ -23,17 +25,29 @@ namespace SaintSender
 
         public void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            eManager = EmailManager.GetInstance();
-            eManager.form = this;
-            Enabled = true;
-            eManager.LoadEmails(MainListView);
+            if (ConnectionManager.GetInstance().Client == null)
+            {
+                this.Close();
+            } else
+            {
+                eManager = EmailManager.GetInstance();
+                eManager.form = this;
+                Enabled = true;
+                eManager.LoadEmails(MainListView);
+            }
         }
 
         void MainListView_Click(object sender, EventArgs e)
         {
             var firstSelectedItem = MainListView.SelectedItems[0];
+            ListViewItem item = firstSelectedItem as ListViewItem;
+            item.Font = new Font(item.Font, FontStyle.Regular);
             MailMessage m = firstSelectedItem.Tag as MailMessage;
-            MainBox.Text = m.Body.Trim();
+
+            var dataStream = m.AlternateViews[0].ContentStream;
+            byte[] byteBuffer = new byte[dataStream.Length];
+            string altBody = System.Text.Encoding.UTF8.GetString(byteBuffer, 0, dataStream.Read(byteBuffer, 0, byteBuffer.Length));
+            mainBrowser.DocumentText = altBody;
         }
 
         public void AddListItemMethod(MailMessage m, bool b)
@@ -42,6 +56,7 @@ namespace SaintSender
             {
                 ListViewItem item = new ListViewItem(new string[] { m.From.ToString(), m.Subject });
                 item.Tag = m;
+                item.Font = new Font(item.Font, FontStyle.Bold);
                 MainListView.Items.Add(item);
             }
             else

@@ -2,6 +2,7 @@
 using S22.Imap;
 using System.Net.Mail;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace SaintSender
 {
@@ -21,15 +22,25 @@ namespace SaintSender
 
         public void LoadEmails(ListView list)
         {
+            bool seen = false;
             list.Items.Clear();
             cManager = ConnectionManager.GetInstance();
             IEnumerable<uint> uids = cManager.Client.Search(SearchCondition.All());
             IEnumerable<MailMessage> messages = cManager.Client.GetMessages(uids);
-            foreach(MailMessage message in messages)
+            IEnumerator<uint> uidList = uids.GetEnumerator();
+            foreach (MailMessage message in messages)
             {
-                ListViewItem item = new ListViewItem(new string[] { message.From.ToString(), message.Subject });
+                ListViewItem item = new ListViewItem(new string[] { message.From.ToString().Trim(), message.Subject.Trim() }, 0);
                 item.Tag = message;
+                uidList.MoveNext();
+                IEnumerable<MessageFlag> flags = cManager.Client.GetMessageFlags(uidList.Current);
+                foreach(MessageFlag flag in flags)
+                {
+                    if (flag.HasFlag(MessageFlag.Seen) == true) { seen = true; break; }
+                }
+                if (!seen) item.Font = new Font(item.Font, FontStyle.Bold);
                 list.Items.Add(item);
+                seen = false;
             }
         }
 
