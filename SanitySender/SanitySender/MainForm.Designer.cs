@@ -39,6 +39,8 @@
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.buttonRestore = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonFetch = new System.Windows.Forms.Button();
+            this.buttonSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MainListView
@@ -47,9 +49,9 @@
             this.MainListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.MainListView.Location = new System.Drawing.Point(12, 12);
+            this.MainListView.Location = new System.Drawing.Point(12, 15);
             this.MainListView.Name = "MainListView";
-            this.MainListView.Size = new System.Drawing.Size(521, 185);
+            this.MainListView.Size = new System.Drawing.Size(521, 182);
             this.MainListView.SmallImageList = this.imgMail;
             this.MainListView.TabIndex = 0;
             this.MainListView.UseCompatibleStateImageBehavior = false;
@@ -74,7 +76,8 @@
             // 
             // buttonBackUp
             // 
-            this.buttonBackUp.Location = new System.Drawing.Point(550, 134);
+            this.buttonBackUp.Enabled = false;
+            this.buttonBackUp.Location = new System.Drawing.Point(550, 131);
             this.buttonBackUp.Name = "buttonBackUp";
             this.buttonBackUp.Size = new System.Drawing.Size(75, 23);
             this.buttonBackUp.TabIndex = 2;
@@ -92,7 +95,8 @@
             // 
             // buttonLogOut
             // 
-            this.buttonLogOut.Location = new System.Drawing.Point(550, 163);
+            this.buttonLogOut.Enabled = false;
+            this.buttonLogOut.Location = new System.Drawing.Point(550, 160);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(75, 23);
             this.buttonLogOut.TabIndex = 5;
@@ -101,6 +105,7 @@
             // 
             // buttonRestore
             // 
+            this.buttonRestore.Enabled = false;
             this.buttonRestore.Location = new System.Drawing.Point(549, 102);
             this.buttonRestore.Name = "buttonRestore";
             this.buttonRestore.Size = new System.Drawing.Size(75, 23);
@@ -111,6 +116,7 @@
             // 
             // buttonClear
             // 
+            this.buttonClear.Enabled = false;
             this.buttonClear.Location = new System.Drawing.Point(550, 73);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(75, 23);
@@ -119,11 +125,33 @@
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
+            // buttonFetch
+            // 
+            this.buttonFetch.Location = new System.Drawing.Point(550, 44);
+            this.buttonFetch.Name = "buttonFetch";
+            this.buttonFetch.Size = new System.Drawing.Size(75, 23);
+            this.buttonFetch.TabIndex = 8;
+            this.buttonFetch.Text = "Fetch";
+            this.buttonFetch.UseVisualStyleBackColor = true;
+            this.buttonFetch.Click += new System.EventHandler(this.buttonFetch_Click);
+            // 
+            // buttonSend
+            // 
+            this.buttonSend.Location = new System.Drawing.Point(550, 15);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(75, 23);
+            this.buttonSend.TabIndex = 9;
+            this.buttonSend.Text = "Send";
+            this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 564);
+            this.Controls.Add(this.buttonSend);
+            this.Controls.Add(this.buttonFetch);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonRestore);
             this.Controls.Add(this.buttonLogOut);
@@ -148,6 +176,8 @@
         private System.Windows.Forms.Button buttonLogOut;
         private System.Windows.Forms.Button buttonRestore;
         private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Button buttonFetch;
+        private System.Windows.Forms.Button buttonSend;
     }
 }
 

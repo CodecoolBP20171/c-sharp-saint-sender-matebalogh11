@@ -20,12 +20,14 @@ namespace SaintSender
 
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             int d = await ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text);
             if (d != 0)
             {
                 BackupManager mngr = new BackupManager(txtName.Text, txtPass.Text);
                 this.Close();
             }
+            else { Cursor = Cursors.Arrow; }
         }
 
         public void Login_FormClosed(object sender, FormClosedEventArgs e)

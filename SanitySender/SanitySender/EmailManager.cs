@@ -81,5 +81,23 @@ namespace SaintSender
             MailMessage m = e.Client.GetMessage(e.MessageUID);
             form.Invoke(form.myDelegate, new object[] { m, true });
         }
+
+        public async Task<int> SendEmal(Dictionary<string, string> emailData)
+        {
+            return await Task.Run(() =>
+            {
+                BackupManager bManager = new BackupManager();
+                string[] creds = bManager.RestoreUserData();
+                MailMessage mail = new MailMessage(creds[0], emailData["to"]);
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Credentials = new System.Net.NetworkCredential(creds[0], creds[1]);
+                mail.Subject = emailData["subject"];
+                mail.Body = emailData["body"];
+                client.Send(mail);
+                return 0;
+            });
+        }
     }
 }
