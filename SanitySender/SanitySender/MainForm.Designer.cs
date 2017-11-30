@@ -37,6 +37,8 @@
             this.buttonBackUp = new System.Windows.Forms.Button();
             this.mainBrowser = new System.Windows.Forms.WebBrowser();
             this.buttonLogOut = new System.Windows.Forms.Button();
+            this.buttonRestore = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MainListView
@@ -97,11 +99,33 @@
             this.buttonLogOut.Text = "Logout";
             this.buttonLogOut.UseVisualStyleBackColor = true;
             // 
+            // buttonRestore
+            // 
+            this.buttonRestore.Location = new System.Drawing.Point(549, 102);
+            this.buttonRestore.Name = "buttonRestore";
+            this.buttonRestore.Size = new System.Drawing.Size(75, 23);
+            this.buttonRestore.TabIndex = 6;
+            this.buttonRestore.Text = "Restore";
+            this.buttonRestore.UseVisualStyleBackColor = true;
+            this.buttonRestore.Click += new System.EventHandler(this.buttonRestore_Click);
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(550, 73);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 23);
+            this.buttonClear.TabIndex = 7;
+            this.buttonClear.Text = "Clear";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 564);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.buttonRestore);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.mainBrowser);
             this.Controls.Add(this.buttonBackUp);
@@ -122,6 +146,8 @@
         private System.Windows.Forms.WebBrowser mainBrowser;
         private System.Windows.Forms.ImageList imgMail;
         private System.Windows.Forms.Button buttonLogOut;
+        private System.Windows.Forms.Button buttonRestore;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
 

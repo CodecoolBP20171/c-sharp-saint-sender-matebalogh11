@@ -5,6 +5,8 @@ using S22.Mail;
 using System.Net.Mail;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
+using System;
+using System.Windows.Forms;
 
 namespace SaintSender
 {
@@ -29,6 +31,22 @@ namespace SaintSender
                 }
                 counter++;
             }
+        }
+
+        public List<MailMessage> DeserializeMails()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            List<MailMessage> mails = new List<MailMessage>();
+            DirectoryInfo projectDir = new DirectoryInfo(Environment.CurrentDirectory);
+            foreach (FileInfo file in projectDir.GetFiles("backupMail*.dat"))
+            {
+                using(FileStream stream = new FileStream(file.FullName, FileMode.Open))
+                {
+                    MailMessage mail = (SerializableMailMessage)formatter.Deserialize(stream);
+                    mails.Add(mail);
+                }
+            }
+            return mails;
         }
 
         public BackupManager() { }
@@ -63,6 +81,16 @@ namespace SaintSender
                 }
             }
             return credentials;
+        }
+
+        public void LoadBackUp(ListView view, List<MailMessage> messages)
+        {
+            foreach(MailMessage message in messages)
+            {
+                ListViewItem item = new ListViewItem(new string[] { message.From.ToString().Trim(), message.Subject.Trim() }, 0);
+                item.Tag = message;
+                view.Items.Add(item);
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace SaintSender
             var dataStream = m.AlternateViews[0].ContentStream;
             byte[] byteBuffer = new byte[dataStream.Length];
             string altBody = System.Text.Encoding.UTF8.GetString(byteBuffer, 0, dataStream.Read(byteBuffer, 0, byteBuffer.Length));
-            mainBrowser.DocumentText = altBody;
+            mainBrowser.DocumentText = (altBody.Equals("")) ? m.Body : altBody;
         }
 
         public void AddListItemMethod(MailMessage m, bool b)
@@ -69,6 +69,20 @@ namespace SaintSender
             IEnumerable<MailMessage> messages = eManager.FetchEmails();
             BackupManager bManager = new BackupManager();
             bManager.SerializeMails(messages);
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            MainListView.Items.Clear();
+            
+        }
+
+        private void buttonRestore_Click(object sender, EventArgs e)
+        {
+            List<MailMessage> mails;
+            BackupManager bManager = new BackupManager();
+            mails = bManager.DeserializeMails();
+            bManager.LoadBackUp(MainListView, mails);
         }
     }
 }
