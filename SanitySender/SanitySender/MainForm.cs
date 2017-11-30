@@ -22,9 +22,9 @@ namespace SaintSender
             lg.Show();
         }
 
-        public void Login_FormClosed(object sender, FormClosedEventArgs e)
+        public async void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (ConnectionManager.GetInstance().Client == null)
+            if (!ConnectionManager.GetInstance().Client.Authed)
             {
                 this.Close();
             } else
@@ -32,43 +32,46 @@ namespace SaintSender
                 eManager = EmailManager.GetInstance();
                 eManager.form = this;
                 Enabled = true;
-                eManager.LoadEmails(MainListView);
+                List<ListViewItem> list = await eManager.LoadEmails(MainListView);
+                foreach(ListViewItem item in list)
+                {
+                    MainListView.Items.Add(item);
+                }
             }
         }
 
         void MainListView_Click(object sender, EventArgs e)
         {
-            var firstSelectedItem = MainListView.SelectedItems[0];
-            ListViewItem item = firstSelectedItem as ListViewItem;
+            ListViewItem item = MainListView.SelectedItems[0] as ListViewItem;
             item.Font = new Font(item.Font, FontStyle.Regular);
-            MailMessage m = firstSelectedItem.Tag as MailMessage;
-
-            var dataStream = m.AlternateViews[0].ContentStream;
-            byte[] byteBuffer = new byte[dataStream.Length];
-            string altBody = System.Text.Encoding.UTF8.GetString(byteBuffer, 0, dataStream.Read(byteBuffer, 0, byteBuffer.Length));
-            mainBrowser.DocumentText = (altBody.Equals("")) ? m.Body : altBody;
+            mainBrowser.DocumentText = item.Tag as string;
         }
 
-        public void AddListItemMethod(MailMessage m, bool b)
+        public async void AddListItemMethod(MailMessage m, bool b)
         {
             if (b == false)
             {
                 ListViewItem item = new ListViewItem(new string[] { m.From.ToString(), m.Subject });
-                item.Tag = m;
+                item.Tag = m.Body;
                 item.Font = new Font(item.Font, FontStyle.Bold);
                 MainListView.Items.Add(item);
             }
             else
             {
-                eManager.LoadEmails(MainListView);
+                List<ListViewItem> list = await eManager.LoadEmails(MainListView);
+                foreach (ListViewItem item in list)
+                {
+                    MainListView.Items.Add(item);
+                }
             }
         }
 
-        private void buttonBackUp_Click(object sender, EventArgs e)
+        private async void buttonBackUp_Click(object sender, EventArgs e)
         {
-            IEnumerable<MailMessage> messages = eManager.FetchEmails();
+            IEnumerable<MailMessage> messages = await eManager.FetchEmails();
             BackupManager bManager = new BackupManager();
-            bManager.SerializeMails(messages);
+            int b = await bManager.SerializeMails(messages);
+            MessageBox.Show("Backup created!");
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

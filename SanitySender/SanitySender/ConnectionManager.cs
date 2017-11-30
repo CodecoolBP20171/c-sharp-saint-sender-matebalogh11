@@ -28,19 +28,22 @@ namespace SaintSender
             return manager;
         }
 
-        public void Login(string usrn, string pw)
+        public async Task<int> Login(string usrn, string pw)
         {
             Client = new ImapClient("imap.gmail.com", 993, true);
-            try
-            {
-                var t =  Task.Run(() => Client.Login(usrn, pw, AuthMethod.Login));
-                t.Wait();
-                SetUpListeners();
-            }
-            catch(InvalidCredentialsException)
-            {
-                MessageBox.Show("The server rejected the supplied credentials.");
-            }
+                return await Task.Run(() =>
+                {
+                    try
+                    {
+                        Client.Login(usrn, pw, AuthMethod.Auto);
+                        SetUpListeners();
+                        return 1;
+                    } catch (InvalidCredentialsException)
+                    {
+                        MessageBox.Show("Invalid credentials", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    return 0;
+                });
         }
 
         public void KillConnection()

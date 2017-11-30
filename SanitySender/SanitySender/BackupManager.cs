@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace SaintSender
 {
@@ -18,19 +19,23 @@ namespace SaintSender
             SaveUserData(name, pass);
         }
 
-        public void SerializeMails(IEnumerable<MailMessage> emails)
-        {
+        public BackupManager() { }
 
-            BinaryFormatter formatter = new BinaryFormatter();
-            int counter = 0;
-            foreach(MailMessage message in emails)
-            {
-                using(FileStream stream = new FileStream($"backupMail{counter}.dat", FileMode.Create))
+        public async Task<int> SerializeMails(IEnumerable<MailMessage> emails)
+        {
+            return await Task.Run(() => {
+                BinaryFormatter formatter = new BinaryFormatter();
+                int counter = 0;
+                foreach (MailMessage message in emails)
                 {
-                    formatter.Serialize(stream, (SerializableMailMessage)message);
+                    using (FileStream stream = new FileStream($"backupMail{counter}.dat", FileMode.Create))
+                    {
+                        formatter.Serialize(stream, (SerializableMailMessage)message);
+                    }
+                    counter++;
                 }
-                counter++;
-            }
+                return 0;
+            });
         }
 
         public List<MailMessage> DeserializeMails()
@@ -48,8 +53,6 @@ namespace SaintSender
             }
             return mails;
         }
-
-        public BackupManager() { }
 
         private void SaveUserData(string name, string pass)
         {
@@ -88,7 +91,7 @@ namespace SaintSender
             foreach(MailMessage message in messages)
             {
                 ListViewItem item = new ListViewItem(new string[] { message.From.ToString().Trim(), message.Subject.Trim() }, 0);
-                item.Tag = message;
+                item.Tag = message.Body;
                 view.Items.Add(item);
             }
         }

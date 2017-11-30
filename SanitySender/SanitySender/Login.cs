@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Threading.Tasks;
+using S22.Imap;
 
 namespace SaintSender
 {
@@ -18,12 +18,14 @@ namespace SaintSender
             txtPass.Text = creds[1];
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private async void buttonLogin_Click(object sender, EventArgs e)
         {
-            var t =  Task.Run(() => ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text));
-            t.Wait();
-            BackupManager mngr = new BackupManager(txtName.Text, txtPass.Text);
-            this.Close();
+            int d = await ConnectionManager.GetInstance().Login(txtName.Text, txtPass.Text);
+            if (d != 0)
+            {
+                BackupManager mngr = new BackupManager(txtName.Text, txtPass.Text);
+                this.Close();
+            }
         }
 
         public void Login_FormClosed(object sender, FormClosedEventArgs e)
