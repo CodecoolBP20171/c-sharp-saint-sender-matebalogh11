@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading.Tasks;
+using System;
 
 namespace SaintSender
 {
@@ -11,7 +12,9 @@ namespace SaintSender
     {
         static EmailManager eManager;
         ConnectionManager cManager;
-        public MainForm form;
+        private MainForm form;
+
+        public MainForm Form { get => form; set => form = value; }
 
         private EmailManager() { }
 
@@ -21,12 +24,11 @@ namespace SaintSender
             return eManager;
         }
 
-        public async Task<List<ListViewItem>> LoadEmails(ListView list)
+        public async Task<List<ListViewItem>> LoadEmails()
         {
             return await Task.Run(() =>
             {
                 bool seen = false;
-                list.Items.Clear();
                 List<ListViewItem> itemList = new List<ListViewItem>();
                 cManager = ConnectionManager.GetInstance();
                 IEnumerable<uint> uids = cManager.Client.Search(SearchCondition.All());
@@ -73,30 +75,37 @@ namespace SaintSender
         public void OnMessage(object sender, IdleMessageEventArgs e)
         {
             MailMessage m = e.Client.GetMessage(e.MessageUID);
-            form.Invoke(form.myDelegate, new object[] { m, false });
+            Form.Invoke(Form.MyDelegate, new object[] { m, false });
         }
 
         public void OnDeletion(object sender, IdleMessageEventArgs e)
         {
             MailMessage m = e.Client.GetMessage(e.MessageUID);
-            form.Invoke(form.myDelegate, new object[] { m, true });
+            Form.Invoke(Form.MyDelegate, new object[] { m, true });
         }
 
         public async Task<int> SendEmal(Dictionary<string, string> emailData)
         {
             return await Task.Run(() =>
             {
-                BackupManager bManager = new BackupManager();
-                string[] creds = bManager.RestoreUserData();
-                MailMessage mail = new MailMessage(creds[0], emailData["to"]);
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.Credentials = new System.Net.NetworkCredential(creds[0], creds[1]);
-                mail.Subject = emailData["subject"];
-                mail.Body = emailData["body"];
-                client.Send(mail);
-                return 0;
+                try
+                {
+                    BackupManager bManager = new BackupManager();
+                    string[] creds = bManager.RestoreUserData();
+                    MailMessage mail = new MailMessage(creds[0], emailData["to"]);
+                    SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                    client.EnableSsl = true;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.Credentials = new System.Net.NetworkCredential(creds[0], creds[1]);
+                    mail.Subject = emailData["subject"];
+                    mail.Body = emailData["body"];
+                    client.Send(mail);
+                    return 0;
+                } catch (FormatException)
+                {
+                    MessageBox.Show("Invalid email address.");
+                }
+                return 1;
             });
         }
     }

@@ -9,17 +9,25 @@ namespace SaintSender
     public partial class MainForm : Form
     {
         public delegate void AddListViewItem(MailMessage m, bool b);
-        public AddListViewItem myDelegate;
+        private AddListViewItem myDelegate;
         EmailManager eManager;
+
+        public AddListViewItem MyDelegate { get => myDelegate; set => myDelegate = value; }
+        public EmailManager EManager { get => eManager; set => eManager = value; }
 
         public MainForm()
         {
             InitializeComponent();
             this.CenterToScreen();
-            myDelegate = new AddListViewItem(AddListItemMethod);
+            MyDelegate = new AddListViewItem(AddListItemMethod);
             LoginForm lg = new LoginForm();
             lg.FormClosed += new FormClosedEventHandler(Login_FormClosed);
             lg.Show();
+        }
+
+        public void SendFormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Enabled = true;
         }
 
         public async void Login_FormClosed(object sender, FormClosedEventArgs e)
@@ -31,10 +39,10 @@ namespace SaintSender
             {
                 Cursor = Cursors.WaitCursor;
                 mainBrowser.DocumentText = "Emails are loading please wait...";
-                eManager = EmailManager.GetInstance();
-                eManager.form = this;
+                EManager = EmailManager.GetInstance();
+                EManager.Form = this;
                 Enabled = true;
-                List<ListViewItem> list = await eManager.LoadEmails(MainListView);
+                List<ListViewItem> list = await EManager.LoadEmails();
                 PopulateListView(list);
                 EnableButtons();
                 Cursor = Cursors.Arrow;
@@ -52,7 +60,7 @@ namespace SaintSender
 
         private void EnableButtons()
         {
-            buttonBackUp.Enabled = buttonClear.Enabled = buttonLogOut.Enabled = buttonRestore.Enabled = true;
+            buttonBackUp.Enabled = buttonClear.Enabled = buttonFetch.Enabled = buttonRestore.Enabled = true;
         }
 
         void MainListView_Click(object sender, EventArgs e)
@@ -66,14 +74,15 @@ namespace SaintSender
         {
             if (b == false)
             {
-                ListViewItem item = new ListViewItem(new string[] { m.From.ToString(), m.Subject });
+                ListViewItem item = new ListViewItem(new string[] { m.From.ToString(), m.Subject }, 0);
                 item.Tag = m.Body;
                 item.Font = new Font(item.Font, FontStyle.Bold);
                 MainListView.Items.Add(item);
             }
             else
             {
-                List<ListViewItem> list = await eManager.LoadEmails(MainListView);
+                MainListView.Items.Clear();
+                List<ListViewItem> list = await EManager.LoadEmails();
                 foreach (ListViewItem item in list)
                 {
                     MainListView.Items.Add(item);
@@ -84,7 +93,7 @@ namespace SaintSender
         private async void buttonBackUp_Click(object sender, EventArgs e)
         {
             mainBrowser.DocumentText = "Backup data creation is in progress...";
-            IEnumerable <MailMessage> messages = await eManager.FetchEmails();
+            IEnumerable <MailMessage> messages = await EManager.FetchEmails();
             BackupManager bManager = new BackupManager();
             int b = await bManager.SerializeMails(messages);
             mainBrowser.DocumentText = "";
@@ -107,15 +116,24 @@ namespace SaintSender
 
         private async void buttonFetch_Click(object sender, EventArgs e)
         {
-            List<ListViewItem> list = await eManager.LoadEmails(MainListView);
+            MainListView.Items.Clear();
+            List<ListViewItem> list = await EManager.LoadEmails();
             PopulateListView(list);
         }
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
             EmailSenderForm eSender = new EmailSenderForm(this);
+            eSender.FormClosed += SendFormClosed;
             eSender.Show();
             this.Enabled = false;
+        }
+
+        private void buttonLogOut_Click(object sender, EventArgs e)
+        {
+            ConnectionManager cManager = ConnectionManager.GetInstance();
+            cManager.Client.Dispose();
+            this.Close();
         }
     }
 }

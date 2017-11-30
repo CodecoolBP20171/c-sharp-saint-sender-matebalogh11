@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using S22.Imap;
 
 namespace SaintSender
 {
@@ -28,11 +27,6 @@ namespace SaintSender
                 this.Close();
             }
             else { Cursor = Cursors.Arrow; }
-        }
-
-        public void Login_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
         }
     }
 }

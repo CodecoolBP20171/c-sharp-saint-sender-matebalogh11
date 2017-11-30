@@ -95,13 +95,13 @@
             // 
             // buttonLogOut
             // 
-            this.buttonLogOut.Enabled = false;
             this.buttonLogOut.Location = new System.Drawing.Point(550, 160);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(75, 23);
             this.buttonLogOut.TabIndex = 5;
             this.buttonLogOut.Text = "Logout";
             this.buttonLogOut.UseVisualStyleBackColor = true;
+            this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
             // buttonRestore
             // 
@@ -127,6 +127,7 @@
             // 
             // buttonFetch
             // 
+            this.buttonFetch.Enabled = false;
             this.buttonFetch.Location = new System.Drawing.Point(550, 44);
             this.buttonFetch.Name = "buttonFetch";
             this.buttonFetch.Size = new System.Drawing.Size(75, 23);
