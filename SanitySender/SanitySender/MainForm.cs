@@ -123,7 +123,8 @@ namespace SaintSender
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            EmailSenderForm eSender = new EmailSenderForm(this);
+            
+            EmailSenderFormNew eSender = new EmailSenderFormNew(this);
             eSender.FormClosed += SendFormClosed;
             eSender.Show();
             this.Enabled = false;
