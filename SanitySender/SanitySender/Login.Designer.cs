@@ -58,8 +58,12 @@
             // 
             // buttonLogin
             // 
+<<<<<<< HEAD
             this.buttonLogin.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+=======
+            this.buttonLogin.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonLogin.Image = ((System.Drawing.Image)(resources.GetObject("buttonLogin.Image")));
             this.buttonLogin.Location = new System.Drawing.Point(197, 105);
             this.buttonLogin.Name = "buttonLogin";

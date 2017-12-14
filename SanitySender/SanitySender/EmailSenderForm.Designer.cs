@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmailSenderForm));
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.labelTo = new System.Windows.Forms.Label();
             this.buttonSend = new System.Windows.Forms.Button();
@@ -46,14 +47,17 @@
             // labelTo
             // 
             this.labelTo.AutoSize = true;
+            this.labelTo.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelTo.Location = new System.Drawing.Point(12, 9);
             this.labelTo.Name = "labelTo";
-            this.labelTo.Size = new System.Drawing.Size(20, 13);
+            this.labelTo.Size = new System.Drawing.Size(22, 17);
             this.labelTo.TabIndex = 1;
             this.labelTo.Text = "To";
             // 
             // buttonSend
             // 
+            this.buttonSend.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
             this.buttonSend.Location = new System.Drawing.Point(197, 226);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
@@ -72,9 +76,10 @@
             // labelSubject
             // 
             this.labelSubject.AutoSize = true;
+            this.labelSubject.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelSubject.Location = new System.Drawing.Point(12, 45);
             this.labelSubject.Name = "labelSubject";
-            this.labelSubject.Size = new System.Drawing.Size(43, 13);
+            this.labelSubject.Size = new System.Drawing.Size(49, 17);
             this.labelSubject.TabIndex = 4;
             this.labelSubject.Text = "Subject";
             // 
@@ -97,6 +102,7 @@
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.labelTo);
             this.Controls.Add(this.textBoxTo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EmailSenderForm";
             this.Text = "Send new email";
             this.ResumeLayout(false);

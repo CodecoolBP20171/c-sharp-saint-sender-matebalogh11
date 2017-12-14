@@ -46,17 +46,28 @@
             // MainListView
             // 
             this.MainListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+<<<<<<< HEAD
             this.MainListView.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+=======
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.MainListView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainListView.BackgroundImage")));
             this.MainListView.BackgroundImageTiled = true;
             this.MainListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MainListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+<<<<<<< HEAD
             this.MainListView.Location = new System.Drawing.Point(14, 18);
             this.MainListView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MainListView.Name = "MainListView";
             this.MainListView.Size = new System.Drawing.Size(620, 223);
+=======
+            this.MainListView.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.MainListView.Location = new System.Drawing.Point(14, 20);
+            this.MainListView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MainListView.Name = "MainListView";
+            this.MainListView.Size = new System.Drawing.Size(608, 220);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.MainListView.SmallImageList = this.imgMail;
             this.MainListView.TabIndex = 0;
             this.MainListView.UseCompatibleStateImageBehavior = false;
@@ -85,10 +96,17 @@
             this.buttonBackUp.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonBackUp.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonBackUp.Image = ((System.Drawing.Image)(resources.GetObject("buttonBackUp.Image")));
+<<<<<<< HEAD
             this.buttonBackUp.Location = new System.Drawing.Point(642, 161);
             this.buttonBackUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonBackUp.Name = "buttonBackUp";
             this.buttonBackUp.Size = new System.Drawing.Size(87, 28);
+=======
+            this.buttonBackUp.Location = new System.Drawing.Point(641, 171);
+            this.buttonBackUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonBackUp.Name = "buttonBackUp";
+            this.buttonBackUp.Size = new System.Drawing.Size(88, 30);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonBackUp.TabIndex = 2;
             this.buttonBackUp.Text = "Backup";
             this.buttonBackUp.UseVisualStyleBackColor = true;
@@ -96,11 +114,19 @@
             // 
             // mainBrowser
             // 
+<<<<<<< HEAD
             this.mainBrowser.Location = new System.Drawing.Point(14, 250);
             this.mainBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mainBrowser.MinimumSize = new System.Drawing.Size(23, 25);
             this.mainBrowser.Name = "mainBrowser";
             this.mainBrowser.Size = new System.Drawing.Size(715, 430);
+=======
+            this.mainBrowser.Location = new System.Drawing.Point(14, 248);
+            this.mainBrowser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainBrowser.MinimumSize = new System.Drawing.Size(24, 26);
+            this.mainBrowser.Name = "mainBrowser";
+            this.mainBrowser.Size = new System.Drawing.Size(715, 473);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.mainBrowser.TabIndex = 4;
             // 
             // buttonLogOut
@@ -108,10 +134,17 @@
             this.buttonLogOut.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonLogOut.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonLogOut.Image = ((System.Drawing.Image)(resources.GetObject("buttonLogOut.Image")));
+<<<<<<< HEAD
             this.buttonLogOut.Location = new System.Drawing.Point(642, 197);
             this.buttonLogOut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(87, 28);
+=======
+            this.buttonLogOut.Location = new System.Drawing.Point(641, 210);
+            this.buttonLogOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogOut.Name = "buttonLogOut";
+            this.buttonLogOut.Size = new System.Drawing.Size(88, 30);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonLogOut.TabIndex = 5;
             this.buttonLogOut.Text = "Logout";
             this.buttonLogOut.UseVisualStyleBackColor = true;
@@ -123,10 +156,17 @@
             this.buttonRestore.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonRestore.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonRestore.Image = ((System.Drawing.Image)(resources.GetObject("buttonRestore.Image")));
+<<<<<<< HEAD
             this.buttonRestore.Location = new System.Drawing.Point(640, 126);
             this.buttonRestore.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonRestore.Name = "buttonRestore";
             this.buttonRestore.Size = new System.Drawing.Size(87, 28);
+=======
+            this.buttonRestore.Location = new System.Drawing.Point(640, 133);
+            this.buttonRestore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRestore.Name = "buttonRestore";
+            this.buttonRestore.Size = new System.Drawing.Size(88, 30);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonRestore.TabIndex = 6;
             this.buttonRestore.Text = "Restore";
             this.buttonRestore.UseVisualStyleBackColor = true;
@@ -138,10 +178,17 @@
             this.buttonClear.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonClear.Image = ((System.Drawing.Image)(resources.GetObject("buttonClear.Image")));
+<<<<<<< HEAD
             this.buttonClear.Location = new System.Drawing.Point(642, 90);
             this.buttonClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(87, 28);
+=======
+            this.buttonClear.Location = new System.Drawing.Point(641, 95);
+            this.buttonClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(88, 30);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonClear.TabIndex = 7;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = true;
@@ -153,10 +200,17 @@
             this.buttonFetch.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonFetch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonFetch.Image = ((System.Drawing.Image)(resources.GetObject("buttonFetch.Image")));
+<<<<<<< HEAD
             this.buttonFetch.Location = new System.Drawing.Point(642, 54);
             this.buttonFetch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonFetch.Name = "buttonFetch";
             this.buttonFetch.Size = new System.Drawing.Size(87, 28);
+=======
+            this.buttonFetch.Location = new System.Drawing.Point(641, 58);
+            this.buttonFetch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonFetch.Name = "buttonFetch";
+            this.buttonFetch.Size = new System.Drawing.Size(88, 30);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonFetch.TabIndex = 8;
             this.buttonFetch.Text = "Fetch";
             this.buttonFetch.UseVisualStyleBackColor = true;
@@ -165,12 +219,21 @@
             // buttonSend
             // 
             this.buttonSend.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+<<<<<<< HEAD
             this.buttonSend.ForeColor = System.Drawing.SystemColors.Window;
             this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
             this.buttonSend.Location = new System.Drawing.Point(642, 18);
             this.buttonSend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(87, 28);
+=======
+            this.buttonSend.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonSend.Image = ((System.Drawing.Image)(resources.GetObject("buttonSend.Image")));
+            this.buttonSend.Location = new System.Drawing.Point(641, 20);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(88, 30);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.buttonSend.TabIndex = 9;
             this.buttonSend.Text = "Send";
             this.buttonSend.UseVisualStyleBackColor = true;
@@ -178,9 +241,15 @@
             // 
             // MainForm
             // 
+<<<<<<< HEAD
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 694);
+=======
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(743, 707);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.buttonFetch);
             this.Controls.Add(this.buttonClear);
@@ -190,9 +259,15 @@
             this.Controls.Add(this.buttonBackUp);
             this.Controls.Add(this.MainListView);
             this.Enabled = false;
+<<<<<<< HEAD
             this.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+=======
+            this.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+>>>>>>> 30ec3616e178ffca484b9999682380dca6e1f7ce
             this.Name = "MainForm";
             this.Text = "SaintSender";
             this.ResumeLayout(false);
